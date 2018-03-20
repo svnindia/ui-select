@@ -342,7 +342,12 @@ uis.controller('uiSelectCtrl',
 
   var _isItemSelected = function (item) {
     return (ctrl.selected && angular.isArray(ctrl.selected) &&
-        ctrl.selected.filter(function (selection) { return angular.equals(selection, item); }).length > 0);
+        ctrl.selected.filter(function (selection) { 
+          if(selection._id)
+            return angular.equals(selection._id, item._id);
+          else
+            return angular.equals(selection, item); 
+        }).length > 0);
   };
 
   var disabledItems = [];
